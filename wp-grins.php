@@ -107,21 +107,27 @@ if (!class_exists('WPGrins')) {
 				$this->add_scripts();
 			}
 		}
-		//Returns various JavaScript vars needed for the scripts
-		function get_js_vars() {
-			if (is_admin()) {
-				return array(
-					'Ajax_Url' => admin_url('admin-ajax.php', 'http'),
-					'LOCATION' => 'admin',
-					'MANUAL' => 'false'
-				);
-			}
-			return array(
-					'Ajax_Url' => admin_url('admin-ajax.php', 'http'),
-					'LOCATION' => 'post',
-					'MANUAL' => esc_js($this->adminOptions['manualinsert'])
-			);
-		} //end get_js_vars
+                //Returns various JavaScript vars needed for the scripts
+                function get_js_vars() {
+                        if (is_ssl()) {
+                        	$schema_ssl = 'https'; 
+                        } else { 
+                        	$schema_ssl = 'http'; 
+                        }
+                        if (is_admin()) {
+                                return array(
+                                        'Ajax_Url' => admin_url('admin-ajax.php', $schema_ssl),
+                                        'LOCATION' => 'admin',
+                                        'MANUAL' => 'false'
+                                );
+                        }
+                        return array(
+                                        'Ajax_Url' => admin_url('admin-ajax.php', $schema_ssl),
+                                        'LOCATION' => 'post',
+                                        'MANUAL' => esc_js($this->adminOptions['manualinsert'])
+                        );
+                } //end get_js_vars
+
 		
 		/*END UTILITY FUNCTIONS*/
     }
