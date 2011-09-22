@@ -16,7 +16,9 @@ Tested on Single Site and MultiSite!
 
 == Installation ==
 
-No special installation procedures required.
+No special installation procedures required. 
+
+Works on MultiSite as per-site or network activated.
 
 == Changelog ==
 
@@ -37,11 +39,6 @@ No special installation procedures required.
 = 1.0 = 
 * Released 25 October 2009 by Ronalfy
 * First release.  Yay!
-
-== Screenshots ==
-
-== Usage ==
-Click on the smilies icons to insert their tags into the text field.
 
 == Frequently Asked Questions ==
 
