@@ -23,46 +23,26 @@
 Plugin Name: WP Grins SSL
 Plugin URI: http://tech.ipstenu.org/my-plugins/wp-grins-ssl
 Description: A Clickable Smilies hack for WordPress.
-Version: 2.0
+Version: 2.1
 Author: Alex King, Ronald Huereca, Mika Epstein
-Author URI: http://www.ronalfy.com
+Author URI: http://www.ipstenu.org
 Props:  Original author, Alex King.  Original fork, Ronald Huereca
 */
 
 if (!class_exists('WPGrins')) {
     class WPGrins	{
-		var $adminOptionsName = "wpgrinsssl";
-		/**
-		* PHP 4 Compatible Constructor
-		*/
-		function WPGrins(){$this->__construct();}
-		
 		/**
 		* PHP 5 Constructor
 		*/		
 		function __construct(){
 			//Scripts
-			add_action('admin_print_scripts-post.php', array(&$this,'add_scripts'),1000); 
-			add_action('admin_print_scripts-post-new.php', array(&$this,'add_scripts'),1000); 
-			add_action('admin_print_scripts-page.php', array(&$this,'add_scripts'),1000); 
-			add_action('admin_print_scripts-page-new.php', array(&$this,'add_scripts'),1000); 
-			add_action('admin_print_scripts-comment.php', array(&$this,'add_scripts'),1000); 
 			add_action('wp_print_scripts', array(&$this,'add_scripts_frontend'),1000);
 			//Styles
-			add_action('admin_print_styles-post.php', array(&$this,'add_styles'),1000); 
-			add_action('admin_print_styles-post-new.php', array(&$this,'add_styles'),1000); 
-			add_action('admin_print_styles-page.php', array(&$this,'add_styles'),1000); 
-			add_action('admin_print_styles-page-new.php', array(&$this,'add_styles'),1000); 
-			add_action('admin_print_styles-comment.php', array(&$this,'add_styles'),1000);
 			add_action('wp_print_styles', array(&$this,'add_styles_frontend'));
 			
 			//Ajax
 			add_action('wp_ajax_grins', array(&$this,'ajax_print_grins'));
 			add_action('wp_ajax_nopriv_grins', array(&$this,'ajax_print_grins')); 
-			
-			//Admin options
-			//add_action('admin_menu', array(&$this,'add_admin_pages'));
-			//$this->adminOptions = $this->get_admin_options();
 		}
 		function ajax_print_grins() {
 			echo $this->wp_grins();
@@ -107,28 +87,18 @@ if (!class_exists('WPGrins')) {
 				$this->add_scripts();
 			}
 		}
-                //Returns various JavaScript vars needed for the scripts
-                function get_js_vars() {
-                        if (is_ssl()) {
-                        	$schema_ssl = 'https'; 
-                        } else { 
-                        	$schema_ssl = 'http'; 
-                        }
-                        if (is_admin()) {
-                                return array(
-                                        'Ajax_Url' => admin_url('admin-ajax.php', $schema_ssl),
-                                        'LOCATION' => 'admin',
-                                        'MANUAL' => 'false'
-                                );
-                        }
-                        return array(
-                                        'Ajax_Url' => admin_url('admin-ajax.php', $schema_ssl),
-                                        'LOCATION' => 'post',
-                                        'MANUAL' => esc_js($this->adminOptions['manualinsert'])
-                        );
-                } //end get_js_vars
-
-		
+            //Returns various JavaScript vars needed for the scripts
+            function get_js_vars() {
+                if (is_ssl()) {
+                   	$schema_ssl = 'https'; 
+                } else { 
+                   	$schema_ssl = 'http'; 
+                }
+                return array(
+                    'Ajax_Url' => admin_url('admin-ajax.php', $schema_ssl),
+                    'LOCATION' => 'admin'
+                );
+            } //end get_js_vars
 		/*END UTILITY FUNCTIONS*/
     }
 }

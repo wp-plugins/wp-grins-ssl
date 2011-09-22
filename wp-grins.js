@@ -45,7 +45,6 @@ $j.wpgrins = {
 		}
 	},
 	init: function() {
-		if (wpgrinsssl.MANUAL == "true") { return; }
 		var s = {};
 		s.response = 'ajax-response';
 		s.type = "POST";
