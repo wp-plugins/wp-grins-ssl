@@ -1,6 +1,6 @@
 === WP Grins SSL ===
 Tags: clickable, smilies, comments, admin, wpgrins
-Contributors: alexkingorg,ronalfy,ipstenu
+Contributors: alexkingorg,ronalfy,Ipstenu
 Requires at least: 3.0
 Tested up to: 3.3
 Stable tag: 2.0
@@ -10,7 +10,9 @@ WP Grins SSL provides smilies for your comment area and is compatible with SSL A
 
 == Description ==
 
-WP Grins SSL will provide clickable smilies for both the post form in the admin interface and the comments form of your blog.  WP Grins SSL is a fork of WP Grins Lite, which is a fork of WP grins, and uses the lighter footprint of the jQuery library.  It also allows for use on a site using [Administration over SSL](http://codex.wordpress.org/Administration_Over_SSL).
+WP Grins SSL will provide clickable smilies for both the post form in the admin interface and the comments form of your blog.  WP Grins SSL is a fork of WP Grins Lite, which is a fork of WP grins, and uses the lighter footprint of the jQuery library.  It also allows for use on a site using [Administration over SSL](http://codex.wordpress.org/Administration_Over_SSL) or not, auto-detecting which is why and displaying either way.
+
+Tested on Single Site and MultiSite!
 
 == Installation ==
 
