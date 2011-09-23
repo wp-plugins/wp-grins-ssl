@@ -22,7 +22,7 @@ Works on MultiSite as per-site or network activated.
 
 == Changelog ==
 
-=2.1=
+= 2.1 =
 * Release on 22 September 2011 by Ipstenu
 * Removing PHP 4 support (WP doesn't).
 * Cleaning out unused aspects from removal of admin panel.
