@@ -3,7 +3,7 @@ Tags: clickable, smilies, comments, admin, wpgrins
 Contributors: alexkingorg,ronalfy,Ipstenu
 Requires at least: 3.0
 Tested up to: 3.3
-Stable tag: 2.1
+Stable tag: 2.2
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5227973
 
 WP Grins SSL provides smilies for your comment area and is compatible with SSL Administration.
@@ -22,8 +22,12 @@ Works on MultiSite as per-site or network activated.
 
 == Changelog ==
 
+= 2.2 =
+* Released on 1 October 2011 by Ipstenu
+* Minification for faster everythinging.
+
 = 2.1 =
-* Release on 22 September 2011 by Ipstenu
+* Released on 22 September 2011 by Ipstenu
 * Removing PHP 4 support (WP doesn't).
 * Cleaning out unused aspects from removal of admin panel.
 
