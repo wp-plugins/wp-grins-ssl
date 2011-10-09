@@ -56,3 +56,6 @@ Your theme must include the `wp_head` call and the comments field in your theme 
 
 = Why did this start with version 2? =
 Because the previous fork-source was 1.0, and this is really just an extension of all that work.  Wanted to keep Ronafly's credits up in there!
+
+= My smilies are squished! =
+You may want to add some padding to your CSS theme.  I don't like forcing my tastes on others, but the smilies are easy to change just for their click-display: `#wp_grins img {padding-right:1px;}`  
