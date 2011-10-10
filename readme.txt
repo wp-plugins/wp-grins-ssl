@@ -12,7 +12,7 @@ WP Grins SSL provides smilies for your comment area and is compatible with SSL A
 
 WP Grins SSL will provide clickable smilies for both the post form in the admin interface and the comments form of your blog.  WP Grins SSL is a fork of WP Grins Lite, which is a fork of WP grins, and uses the lighter footprint of the jQuery library.  It also allows for use on a site using [Administration over SSL](http://codex.wordpress.org/Administration_Over_SSL) or not, auto-detecting which is why and displaying either way.
 
-Tested on Single Site and MultiSite!
+This plugin works on traditional WordPress (i.e. Single Site) as well as MultiSite installs.
 
 == Installation ==
 
