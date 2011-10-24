@@ -22,6 +22,10 @@ Works on MultiSite as per-site or network activated.
 
 == Changelog ==
 
+= 2.3 =
+* Released on X MONTH 2011 by Ipstenu.
+* PHP error fixes by Ryan Hellyer.
+
 = 2.2 =
 * Released on 1 October 2011 by Ipstenu
 * Minification for faster everythinging.
