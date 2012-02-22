@@ -1,8 +1,8 @@
 === WP Grins SSL ===
 Tags: clickable, smilies, comments, admin, wpgrins
-Contributors: alexkingorg,ronalfy,Ipstenu
+Contributors: alexkingorg, ronalfy, Ipstenu
 Requires at least: 3.0
-Tested up to: 3.3
+Tested up to: 3.4
 Stable tag: 2.2
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5227973
 
@@ -10,9 +10,9 @@ WP Grins SSL provides smilies for your comment area and is compatible with SSL A
 
 == Description ==
 
-WP Grins SSL will provide clickable smilies for both the post form in the admin interface and the comments form of your blog.  WP Grins SSL is a fork of WP Grins Lite, which is a fork of WP grins, and uses the lighter footprint of the jQuery library.  It also allows for use on a site using [Administration over SSL](http://codex.wordpress.org/Administration_Over_SSL) or not, auto-detecting which is why and displaying either way.
+WP Grins SSL will provide clickable smilies for both the post form in the admin interface and the comments form of your blog.  WP Grins SSL is a fork of WP Grins that allows for use on a site using [Administration over SSL](http://codex.wordpress.org/Administration_Over_SSL) or not, auto-detecting which is why and displaying either way.
 
-This plugin works on traditional WordPress (i.e. Single Site) as well as MultiSite installs.
+Tested on Single Site and MultiSite.
 
 == Installation ==
 
@@ -22,9 +22,9 @@ Works on MultiSite as per-site or network activated.
 
 == Changelog ==
 
-= 2.3 =
-* Released on X MONTH 2011 by Ipstenu.
-* PHP error fixes by Ryan Hellyer.
+= 3.0 =
+* Released on 22 February 2012 by Ipstenu
+* Reverted back to Alex's use of Prototype because something went funky cold medina with ajax.
 
 = 2.2 =
 * Released on 1 October 2011 by Ipstenu
@@ -60,6 +60,3 @@ Your theme must include the `wp_head` call and the comments field in your theme 
 
 = Why did this start with version 2? =
 Because the previous fork-source was 1.0, and this is really just an extension of all that work.  Wanted to keep Ronafly's credits up in there!
-
-= My smilies are squished! =
-You may want to add some padding to your CSS theme.  I don't like forcing my tastes on others, but the smilies are easy to change just for their click-display: `#wp_grins img {padding-right:1px;}`  
