@@ -3,7 +3,7 @@ Tags: clickable, smilies, comments, admin, wpgrins
 Contributors: alexkingorg, ronalfy, Ipstenu
 Requires at least: 3.0
 Tested up to: 3.4
-Stable tag: 2.2
+Stable tag: 3.0
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5227973
 
 WP Grins SSL provides smilies for your comment area and is compatible with SSL Administration.
