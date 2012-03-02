@@ -24,9 +24,9 @@
 
 /*
 Plugin Name: WP Grins SSL
-Plugin URI: http://tech.ipstenu.org/my-plugins/wp-grins-ssl
+Plugin URI: http://wordpress.org/extend/plugins/wp-grins-ssl
 Description: A Clickable Smilies hack for WordPress.
-Version: 3.0
+Version: 3.1
 Author: Alex King, Ronald Huereca, Mika Epstein
 Author URI: http://www.ipstenu.org
 Props:  Original author, Alex King.  Original fork, Ronald Huereca
@@ -140,5 +140,15 @@ function grin(tag) {
 
 add_action('init', 'wp_grins_js');
 add_action('wp_head', 'wp_grins_head');
+
+// donate link on manage plugin page
+add_filter('plugin_row_meta', 'execphp_donate_link', 10, 2);
+function execphp_donate_link($links, $file) {
+	if ($file == plugin_basename(__FILE__)) {
+		$donate_link = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ipstenu%40ipstenu%2eorg">Donate</a>';
+		$links[] = $donate_link;
+	}
+	return $links;
+}
 
 ?>

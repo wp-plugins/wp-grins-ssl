@@ -22,6 +22,10 @@ Works on MultiSite as per-site or network activated.
 
 == Changelog ==
 
+= 3.1 =
+* Release on ??? by Ipstenu
+* Trying to fix why it decides, magically, not to show up. Sometimes.
+
 = 3.0 =
 * Released on 22 February 2012 by Ipstenu
 * Reverted back to Alex's use of Prototype because something went funky cold medina with ajax.
