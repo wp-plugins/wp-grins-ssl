@@ -14,6 +14,9 @@ WP Grins SSL will provide clickable smilies for both the post form in the admin 
 
 Tested on Single Site and MultiSite.
 
+* [Plugin Site](http://halfelf.org/plugins/wp-grins-ssl/)
+* [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5227973)
+
 == Installation ==
 
 No special installation procedures required. 
@@ -23,7 +26,7 @@ Works on MultiSite as per-site or network activated.
 == Changelog ==
 
 = 3.1 =
-* Release on ??? by Ipstenu
+* Released on 17 April 2012 by Ipstenu
 * Trying to fix why it decides, magically, not to show up. Sometimes.
 
 = 3.0 =

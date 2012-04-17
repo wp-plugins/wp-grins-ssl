@@ -16,15 +16,12 @@
 // **********************************************************************
 // This program is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 // *****************************************************************
-
-// Prototype is licenced as MIT, which is compatible with GPL - http://www.gnu.org/licenses/license-list.html#Expat
-
 
 /*
 Plugin Name: WP Grins SSL
-Plugin URI: http://wordpress.org/extend/plugins/wp-grins-ssl
+Plugin URI: http://halfelf.org/plugins/wp-grins-ssl
 Description: A Clickable Smilies hack for WordPress.
 Version: 3.1
 Author: Alex King, Ronald Huereca, Mika Epstein
@@ -32,123 +29,95 @@ Author URI: http://www.ipstenu.org
 Props:  Original author, Alex King.  Original fork, Ronald Huereca
 */
 
-function wp_grins() { // left in for legacy reasons
-	print('');
-}
-
-function wp_grins_head() {
-	print('<script type="text/javascript" src="'.get_bloginfo('wpurl').'/index.php?ak_action=wp_grins_js"></script>'."\n");
-        wp_enqueue_style('wp-grins', plugins_url('wp-grins-ssl/wp-grins.css'));
-}
-
-function wp_grins_js() {
-	if (function_exists('wp_enqueue_script')) {
-		wp_enqueue_script('prototype');
-	}
-	if (isset($_GET['ak_action']) && $_GET['ak_action'] == 'wp_grins_js') {
-		global $wpsmiliestrans;
-
-		header("Content-type: text/javascript");
-	
-		$grins = '';
-		$smiled = array();
-		foreach ($wpsmiliestrans as $tag => $grin) {
-			if (!in_array($grin, $smiled)) {
-				$smiled[] = $grin;
-				$tag = str_replace(' ', '', $tag);
-				$grins .= '<img src="'.get_bloginfo('wpurl').'/wp-includes/images/smilies/'.$grin.'" alt="'.$tag.'" onclick="grin(\''.$tag.'\');"/> ';
+if (!class_exists('WPGrins')) {
+    class WPGrins	{
+		/**
+		* PHP 5 Constructor
+		*/		
+		function __construct(){
+			//Scripts
+			add_action('wp_print_scripts', array(&$this,'add_scripts_frontend'),1000);
+			//Styles
+			add_action('wp_print_styles', array(&$this,'add_styles_frontend'));
+			
+			//Ajax
+			add_action('wp_ajax_grins', array(&$this,'ajax_print_grins'));
+			add_action('wp_ajax_nopriv_grins', array(&$this,'ajax_print_grins')); 
+		}
+		function ajax_print_grins() {
+			echo $this->wp_grins();
+			exit;
+		}
+		function wp_grins() {
+				global $wpsmiliestrans;
+				$grins = '';
+				$smiled = array();
+				foreach ($wpsmiliestrans as $tag => $grin) {
+					if (!in_array($grin, $smiled)) {
+						$smiled[] = $grin;
+						$tag = esc_attr(str_replace(' ', '', $tag));
+						$src = esc_url(site_url("wp-includes/images/smilies/{$grin}", "http"));
+						$grins .= "<img src='$src' alt='$tag' onclick='jQuery.wpgrins.grin(\"$tag\");' />";
+					}
+				}
+				return $grins;
+		} //end function wp_grins
+		
+		function add_styles() {
+			wp_enqueue_style('wp-grins', plugins_url('wp-grins-ssl/wp-grins.css'));
+		}
+		function add_styles_frontend() {
+			if (!is_admin()) {
+				if ((!is_single() && !is_page()) || 'closed' == $post->comment_status) {
+					return;
+				} 
+				$this->add_styles();
 			}
 		}
-
-?>
-function insertAfter(node, referenceNode) {
-	referenceNode.parentNode.insertBefore(node, referenceNode.nextSibling);
+		function add_scripts(){
+			wp_enqueue_script('wp_grins_ssl', plugins_url('wp-grins-ssl/wp-grins.js'), array("jquery"), 1.0); 
+			wp_localize_script( 'wp_grins_ssl', 'wpgrinsssl', $this->get_js_vars());
+		}
+		function add_scripts_frontend() {
+			//Make sure the scripts are included only on the front-end
+			if (!is_admin()) {
+				if ((!is_single() && !is_page()) || 'closed' == $post->comment_status) {
+					return;
+				} 
+				$this->add_scripts();
+			}
+		}
+            //Returns various JavaScript vars needed for the scripts
+            function get_js_vars() {
+                if (is_ssl()) {
+                   	$schema_ssl = 'https'; 
+                } else { 
+                   	$schema_ssl = 'http'; 
+                }
+                return array(
+                    'Ajax_Url' => admin_url('admin-ajax.php', $schema_ssl),
+                    'LOCATION' => 'admin'
+                );
+            } //end get_js_vars
+		/*END UTILITY FUNCTIONS*/
+    }
 }
-function loadGrins() {
-	var grinsDiv = document.createElement('div');
-	grinsDiv.id = 'wp_grins';
-	grinsDiv.innerHTML = '<?php print(str_replace("'", "\'", $grins)); ?>';
-	if ($('postdiv')) {
-		var type = 'child';
-		var node = $('postdiv');
-	}
-	else if (document.getElementById('postdivrich')) {
-		var type = 'child';
-		var node = $('postdivrich');
-	}
-	else if (document.getElementById('comment')) {
-		var type = 'before';
-		var node = $('comment');
-	}
-	else {
-		return;
-	}
-	switch (type) {
-		case 'child':
-			grinsDiv.style.paddingTop = '5px';
-			node.appendChild(grinsDiv);
-			break;
-		case 'before':
-			node.parentNode.insertBefore(grinsDiv, node);
-			break;
+//instantiate the class
+if (class_exists('WPGrins')) {
+	$GrinsSSL = new WPGrins();
+}
+// left in for legacy reasons
+if (!function_exists('wp_grins')) {
+	function wp_grins() { 
+		print('');
 	}
 }
-Event.observe(window, 'load', loadGrins, false);
-function grin(tag) {
-	var myField;
-	if ($('content') && $('content').type == 'textarea') {
-		myField = document.getElementById('content');
-		if ($('postdivrich') && typeof tinyMCE != 'undefined' && (!$('edButtons') || $('quicktags').style.display == 'none')) {
-			tinyMCE.execInstanceCommand('mce_editor_0', 'mceInsertContent', false, '&nbsp;' + tag + '&nbsp;');
-			tinyMCE.selectedInstance.repaint();
-			return;
+if (!function_exists('wp_print_grins')) {
+	function wp_print_grins() {
+		global $GrinsSSL;
+		if (isset($GrinsSSL)) {
+			return $GrinsSSL->wp_grins();
 		}
 	}
-	else if ($('comment') && $('comment').type == 'textarea') {
-		myField = $('comment');
-	}
-	else {
-		return false;
-	}
-	if (document.selection) {
-		myField.focus();
-		sel = document.selection.createRange();
-		sel.text = ' ' + tag + ' ';
-		myField.focus();
-	}
-	else if (myField.selectionStart || myField.selectionStart == '0') {
-		var startPos = myField.selectionStart;
-		var endPos = myField.selectionEnd;
-		var cursorPos = endPos;
-		myField.value = myField.value.substring(0, startPos)
-					  + ' ' + tag + ' '
-					  + myField.value.substring(endPos, myField.value.length);
-		cursorPos += tag.length + 2;
-		myField.focus();
-		myField.selectionStart = cursorPos;
-		myField.selectionEnd = cursorPos;
-	}
-	else {
-		myField.value += tag;
-		myField.focus();
-	}
 }
-<?php
-		die();
-	}
-}
-
-add_action('init', 'wp_grins_js');
-add_action('wp_head', 'wp_grins_head');
-
-// donate link on manage plugin page
-add_filter('plugin_row_meta', 'execphp_donate_link', 10, 2);
-function execphp_donate_link($links, $file) {
-	if ($file == plugin_basename(__FILE__)) {
-		$donate_link = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ipstenu%40ipstenu%2eorg">Donate</a>';
-		$links[] = $donate_link;
-	}
-	return $links;
-}
-
 ?>
