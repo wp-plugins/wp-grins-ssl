@@ -1,9 +1,9 @@
 === WP Grins SSL ===
-Tags: clickable, smilies, comments, admin, wpgrins
+Tags: clickable, smilies, comments, bbpress, wpgrins
 Contributors: alexkingorg, ronalfy, Ipstenu
 Requires at least: 3.0
 Tested up to: 3.4
-Stable tag: 3.1
+Stable tag: 4.0
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5227973
 
 WP Grins SSL provides smilies for your comment area and is compatible with SSL Administration.
@@ -25,25 +25,29 @@ Works on MultiSite as per-site or network activated.
 
 == Changelog ==
 
+= 4.0 =
+* 27 April 2012 by Ipstenu
+* Major bump. Why? Oh this little thing I like to call bbPress. Fully supported.
+
 = 3.1 =
-* Released on 17 April 2012 by Ipstenu
+* 17 April 2012 by Ipstenu
 * Trying to fix why it decides, magically, not to show up. Sometimes. Should work. Works on 3.4...
 
 = 3.0 =
-* Released on 22 February 2012 by Ipstenu
+* 22 February 2012 by Ipstenu
 * Reverted back to Alex's use of Prototype because something went funky cold medina with ajax.
 
 = 2.2 =
-* Released on 1 October 2011 by Ipstenu
+* 1 October 2011 by Ipstenu
 * Minification for faster everythinging.
 
 = 2.1 =
-* Released on 22 September 2011 by Ipstenu
+* 22 September 2011 by Ipstenu
 * Removing PHP 4 support (WP doesn't).
 * Cleaning out unused aspects from removal of admin panel.
 
 = 2.0 =
-* Released 21 September 2011 by Ipstenu
+* 21 September 2011 by Ipstenu
 * Fixed issue with SSL adminstration causing the icons not to show up.
 * Removed admin panel. It's 2011. If your theme doesn't have wp_head, you have other issues.
 * Consolidated stylesheets (dropping support for IE 6).
@@ -51,13 +55,13 @@ Works on MultiSite as per-site or network activated.
 * Compressed files.
 
 = 1.1 = 
-* Released 04 November 2009 by Ronalfy
+* 04 November 2009 by Ronalfy
 * Fixed bug where grins would show up in the comments panel.
 * Re-did the JavaScript to it's completely separate and only runs when necessary.
 * Added admin panel option to manual insert smilies on a page or a post.
 
 = 1.0 = 
-* Released 25 October 2009 by Ronalfy
+* 25 October 2009 by Ronalfy
 * First release.  Yay!
 
 == Frequently Asked Questions ==
