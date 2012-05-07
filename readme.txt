@@ -3,7 +3,7 @@ Tags: clickable, smilies, comments, bbpress, wpgrins
 Contributors: alexkingorg, ronalfy, Ipstenu
 Requires at least: 3.0
 Tested up to: 3.4
-Stable tag: 4.0
+Stable tag: 4.1
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5227973
 License: GPL2
 
@@ -78,3 +78,6 @@ Your theme must include the `wp_head` call and the comments field in your theme 
 
 = Why did this start with version 2? =
 Because the previous fork-source was 1.0, and this is really just an extension of all that work.  Wanted to keep Ronafly's credits up in there!
+
+= Will you support BuddyPress? =
+Eventually. I'm not running it right now, so it's hard to test.

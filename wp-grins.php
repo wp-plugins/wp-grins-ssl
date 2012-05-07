@@ -135,17 +135,22 @@ function ippy_wpgs_admin_init(){
 
 	register_setting(
 		'discussion',               // settings page
-		'ippy_wpgs_options'         // option name
+		'ippy_wpgs_options',         // option name
+		'ippy_wpgs_validate_options' // validation callback
 	);
 	
 	add_settings_field(
-		'ippy_wpgs_bbpress',        // id
-		'Smilies',                  // setting title
-		'ippy_wpgs_setting_input',  // display callback
+		'ippy_wpgs_bbpress',         // id
+		'WP Grins',                // setting title
+		'ippy_wpgs_setting_input',   // display callback
 		'discussion',               // settings page
 		'default'                   // settings section
 	);
-	
+}
+
+register_activation_hook( __FILE__, 'ippy_wpgs_activate' );
+
+function ippy_wpgs_activate() {
 	$options = get_option( 'ippy_wpgs_options' );
 	$options['comments'] = '1';
 	$options['bbpress'] = '0';
@@ -161,9 +166,21 @@ function ippy_wpgs_setting_input() {
 	
 	// echo the field
 	?>
-<p><?php if ( function_exists('is_bbpress') ) { ?>
-<input id='bbpress' name='ippy_wpgs_options[bbpress]' type='checkbox' value='<?php echo $valuebb; ?>' <?php if ( ( $valuebb != '0') && !is_null($valuebb) ) { echo ' checked="checked"'; } ?> /> Activate Smilies on bbPress<br /> <?php } ?>
-<input id='comments' name='ippy_wpgs_options[comments]' type='checkbox' value='<?php echo $valuebb; ?>' <?php if ( ( $valueco != '0') && !is_null($valueco) ) { echo ' checked="checked"'; } ?> /> Activate Smilies on comments
-
+<p><?php 
+	if ( function_exists('is_bbpress') ) { ?>
+<input id='bbpress' name='ippy_wpgs_options[bbpress]' type='checkbox' value='1' <?php if ( ( $valuebb != '0') && !is_null($valuebb) ) { echo ' checked="checked"'; } ?> /> Activate Smilies for bbPress<br /> <?php } 
+	else { ?>
+	<input type='hidden' id='bbpress' name='ippy_wpgs_options[bbpress]' value='0'> <?php } 
+?>
+<input id='comments' name='ippy_wpgs_options[comments]' type='checkbox' value='1' <?php if ( ( $valueco != '0') && !is_null($valueco) ) { echo ' checked="checked"'; } ?> /> Activate Smilies for comments
 	<?php
+}
+
+// Validate user input
+function ippy_wpgs_validate_options( $input ) {
+	$valid = array();
+	$valid['comments'] = $input['comments'];
+	$valid['bbpress'] = $input['bbpress'];
+	unset( $input );
+	return $valid;
 }
