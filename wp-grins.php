@@ -23,7 +23,7 @@
 Plugin Name: WP Grins SSL
 Plugin URI: http://halfelf.org/plugins/wp-grins-ssl
 Description: A Clickable Smilies hack for WordPress.
-Version: 4.0
+Version: 4.1
 Author: Alex King, Ronald Huereca, Mika Epstein
 Author URI: http://www.ipstenu.org
 Props:  Original author, Alex King.  Original fork, Ronald Huereca
@@ -70,7 +70,14 @@ if (!class_exists('WPGrins')) {
 			if (!is_admin()) {
 				if ((!is_single() && !is_page()) || 'closed' == $post->comment_status) {
 					return;
-				} 
+				}
+				elseif ( function_exists('is_bbpress') && ( ( $valuebb == '0') || is_null($valuebb) ) ) {
+					return;
+				}
+				elseif ( ( $valueco == '0') || is_null($valueco) ) {
+					return;
+				}
+				
 				$this->add_styles();
 			}
 		}
@@ -120,4 +127,43 @@ if (!function_exists('wp_print_grins')) {
 		}
 	}
 }
-?>
+
+// Register and define the settings
+add_action('admin_init', 'ippy_wpgs_admin_init');
+
+function ippy_wpgs_admin_init(){
+
+	register_setting(
+		'discussion',               // settings page
+		'ippy_wpgs_options'         // option name
+	);
+	
+	add_settings_field(
+		'ippy_wpgs_bbpress',        // id
+		'Smilies',                  // setting title
+		'ippy_wpgs_setting_input',  // display callback
+		'discussion',               // settings page
+		'default'                   // settings section
+	);
+	
+	$options = get_option( 'ippy_wpgs_options' );
+	$options['comments'] = '1';
+	$options['bbpress'] = '0';
+	update_option('ippy_wpgs_options', $options);
+}
+
+// Display and fill the form field
+function ippy_wpgs_setting_input() {
+	// get option value from the database
+	$options = get_option( 'ippy_wpgs_options' );
+	$valuebb = $options['bbpress'];
+	$valueco = $options['comments'];
+	
+	// echo the field
+	?>
+<p><?php if ( function_exists('is_bbpress') ) { ?>
+<input id='bbpress' name='ippy_wpgs_options[bbpress]' type='checkbox' value='<?php echo $valuebb; ?>' <?php if ( ( $valuebb != '0') && !is_null($valuebb) ) { echo ' checked="checked"'; } ?> /> Activate Smilies on bbPress<br /> <?php } ?>
+<input id='comments' name='ippy_wpgs_options[comments]' type='checkbox' value='<?php echo $valuebb; ?>' <?php if ( ( $valueco != '0') && !is_null($valueco) ) { echo ' checked="checked"'; } ?> /> Activate Smilies on comments
+
+	<?php
+}
