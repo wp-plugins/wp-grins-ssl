@@ -3,7 +3,7 @@ Tags: clickable, smilies, comments, bbpress, wpgrins
 Contributors: alexkingorg, ronalfy, Ipstenu
 Requires at least: 3.0
 Tested up to: 3.4
-Stable tag: 4.2
+Stable tag: 4.2.1
 Donate link: https://www.wepay.com/donations/halfelf-wp
 License: GPL2
 
@@ -27,6 +27,10 @@ Tested on Single Site and MultiSite.
 3. Look for 'Smilies' and check boxes as desired. (Comments are activated by default)
 
 == Changelog ==
+
+= 4.2.1 =
+* 2012 June 02, by Ipstenu
+* Typos. A-freaking-gain
 
 = 4.2 =
 * 2012 June 02, by Ipstenu

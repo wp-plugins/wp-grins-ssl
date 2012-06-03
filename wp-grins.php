@@ -23,7 +23,7 @@
 Plugin Name: WP Grins SSL
 Plugin URI: http://halfelf.org/plugins/wp-grins-ssl
 Description: A Clickable Smilies hack for WordPress.
-Version: 4.2
+Version: 4.2.1
 Author: Alex King, Ronald Huereca, Mika Epstein
 Author URI: http://www.ipstenu.org
 Props:  Original author, Alex King.  Original fork, Ronald Huereca
@@ -71,7 +71,20 @@ if (!class_exists('WPGrins')) {
 			wp_localize_script( 'wp_grins_ssl', 'wpgrinsssl', $this->get_js_vars());
 		}
 		
-		
+		function add_styles_frontend() {
+    		$options = get_option('ippy_wpgs_options');
+    		$valuebb = $options['bbpress'];
+    		$valueco = $options['comments'];
+    		
+    		if ( function_exists('is_bbpress') ) {
+                if ( is_bbpress()  && ( $valuebb != '0') && !is_null($valuebb) ) {
+                    $this->add_styles();
+                }
+              }
+            if ( comments_open() && is_singular() && ( $valueco != '0') && !is_null($valueco) ) {
+                $this->add_styles();
+            }
+        }		
 		function add_scripts_frontend() {
     		$options = get_option('ippy_wpgs_options');
     		$valuebb = $options['bbpress'];
@@ -80,12 +93,10 @@ if (!class_exists('WPGrins')) {
     		if ( function_exists('is_bbpress') ) {
                 if ( is_bbpress()  && ( $valuebb != '0') && !is_null($valuebb) ) {
                     $this->add_scripts();
-                    $this->add_styles();
                 }
               }
             if ( comments_open() && is_singular() && ( $valueco != '0') && !is_null($valueco) ) {
                 $this->add_scripts();
-                $this->add_styles();
             }
         }
             //Returns various JavaScript vars needed for the scripts
