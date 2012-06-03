@@ -23,7 +23,7 @@
 Plugin Name: WP Grins SSL
 Plugin URI: http://halfelf.org/plugins/wp-grins-ssl
 Description: A Clickable Smilies hack for WordPress.
-Version: 4.1
+Version: 4.2
 Author: Alex King, Ronald Huereca, Mika Epstein
 Author URI: http://www.ipstenu.org
 Props:  Original author, Alex King.  Original fork, Ronald Huereca
@@ -66,34 +66,28 @@ if (!class_exists('WPGrins')) {
 		function add_styles() {
 			wp_enqueue_style('wp-grins', plugins_url('wp-grins-ssl/wp-grins.css'));
 		}
-		function add_styles_frontend() {
-			if (!is_admin()) {
-				if ((!is_single() && !is_page()) || 'closed' == $post->comment_status) {
-					return;
-				}
-				elseif ( function_exists('is_bbpress') && ( ( $valuebb == '0') || is_null($valuebb) ) ) {
-					return;
-				}
-				elseif ( ( $valueco == '0') || is_null($valueco) ) {
-					return;
-				}
-				
-				$this->add_styles();
-			}
-		}
-		function add_scripts(){
+		function add_scripts() {
 			wp_enqueue_script('wp_grins_ssl', plugins_url('wp-grins-ssl/wp-grins.js'), array("jquery"), 1.0); 
 			wp_localize_script( 'wp_grins_ssl', 'wpgrinsssl', $this->get_js_vars());
 		}
+		
+		
 		function add_scripts_frontend() {
-			//Make sure the scripts are included only on the front-end
-			if (!is_admin()) {
-				if ((!is_single() && !is_page()) || 'closed' == $post->comment_status) {
-					return;
-				} 
-				$this->add_scripts();
-			}
-		}
+    		$options = get_option('ippy_wpgs_options');
+    		$valuebb = $options['bbpress'];
+    		$valueco = $options['comments'];
+    		
+    		if ( function_exists('is_bbpress') ) {
+                if ( is_bbpress()  && ( $valuebb != '0') && !is_null($valuebb) ) {
+                    $this->add_scripts();
+                    $this->add_styles();
+                }
+              }
+            if ( comments_open() && is_singular() && ( $valueco != '0') && !is_null($valueco) ) {
+                $this->add_scripts();
+                $this->add_styles();
+            }
+        }
             //Returns various JavaScript vars needed for the scripts
             function get_js_vars() {
                 if (is_ssl()) {
@@ -152,7 +146,7 @@ register_activation_hook( __FILE__, 'ippy_wpgs_activate' );
 
 function ippy_wpgs_activate() {
 	$options = get_option( 'ippy_wpgs_options' );
-	$options['comments'] = '1';
+	$options['comments'] = '0';
 	$options['bbpress'] = '0';
 	update_option('ippy_wpgs_options', $options);
 }
@@ -183,4 +177,15 @@ function ippy_wpgs_validate_options( $input ) {
 	$valid['bbpress'] = $input['bbpress'];
 	unset( $input );
 	return $valid;
+}
+
+// donate link on manage plugin page
+
+add_filter('plugin_row_meta', 'ippy_wpgs_donate_link', 10, 2);
+function ippy_scc_donate_link($links, $file) {
+        if ($file == plugin_basename(__FILE__)) {
+                $donate_link = '<a href="https://www.wepay.com/donations/halfelf-wp">Donate</a>';
+                $links[] = $donate_link;
+        }
+        return $links;
 }

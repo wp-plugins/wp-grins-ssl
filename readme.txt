@@ -3,8 +3,8 @@ Tags: clickable, smilies, comments, bbpress, wpgrins
 Contributors: alexkingorg, ronalfy, Ipstenu
 Requires at least: 3.0
 Tested up to: 3.4
-Stable tag: 4.1
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5227973
+Stable tag: 4.2
+Donate link: https://www.wepay.com/donations/halfelf-wp
 License: GPL2
 
 WP Grins SSL provides smilies for your comment areas and is compatible with SSL Administration.
@@ -18,7 +18,7 @@ As of version 4.0, WP Grins SSL also works on bbPress (the plugin) and has an op
 Tested on Single Site and MultiSite.
 
 * [Plugin Site](http://halfelf.org/plugins/wp-grins-ssl/)
-* [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5227973)
+* [Donate](https://www.wepay.com/donations/halfelf-wp)
 
 == Installation ==
 
@@ -27,6 +27,10 @@ Tested on Single Site and MultiSite.
 3. Look for 'Smilies' and check boxes as desired. (Comments are activated by default)
 
 == Changelog ==
+
+= 4.2 =
+* 2012 June 02, by Ipstenu
+* bbPress refining (testing with 2.1 as well since that's a thing)
 
 = 4.1 =
 * 2012 May 07, by Ipstenu
