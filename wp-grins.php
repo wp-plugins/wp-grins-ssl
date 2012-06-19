@@ -23,7 +23,7 @@
 Plugin Name: WP Grins SSL
 Plugin URI: http://halfelf.org/plugins/wp-grins-ssl
 Description: A Clickable Smilies hack for WordPress.
-Version: 4.2.1
+Version: 4.3
 Author: Alex King, Ronald Huereca, Mika Epstein
 Author URI: http://www.ipstenu.org
 Props:  Original author, Alex King.  Original fork, Ronald Huereca
@@ -75,9 +75,10 @@ if (!class_exists('WPGrins')) {
     		$options = get_option('ippy_wpgs_options');
     		$valuebb = $options['bbpress'];
     		$valueco = $options['comments'];
+    		$ippy_wpgs_bbp_fancy = get_option( '_bbp_use_wp_editor' );
     		
     		if ( function_exists('is_bbpress') ) {
-                if ( is_bbpress()  && ( $valuebb != '0') && !is_null($valuebb) ) {
+                if ( is_bbpress()  && ( $valuebb != '0') && !is_null($valuebb) && ($ippy_wpgs_bbp_fancy == '0') ) {
                     $this->add_styles();
                 }
               }
@@ -89,9 +90,10 @@ if (!class_exists('WPGrins')) {
     		$options = get_option('ippy_wpgs_options');
     		$valuebb = $options['bbpress'];
     		$valueco = $options['comments'];
+    		$ippy_wpgs_bbp_fancy = get_option( '_bbp_use_wp_editor' );
     		
     		if ( function_exists('is_bbpress') ) {
-                if ( is_bbpress()  && ( $valuebb != '0') && !is_null($valuebb) ) {
+                if ( is_bbpress()  && ( $valuebb != '0') && !is_null($valuebb) && ($ippy_wpgs_bbp_fancy == '0') ) {
                     $this->add_scripts();
                 }
               }
@@ -168,11 +170,10 @@ function ippy_wpgs_setting_input() {
 	$options = get_option( 'ippy_wpgs_options' );
 	$valuebb = $options['bbpress'];
 	$valueco = $options['comments'];
-	
-	// echo the field
+	$ippy_wpgs_bbp_fancy = get_option( '_bbp_use_wp_editor' );
 	?>
 <p><?php 
-	if ( function_exists('is_bbpress') ) { ?>
+	if ( function_exists('is_bbpress') && ($ippy_wpgs_bbp_fancy == '0') ) { ?>
 <input id='bbpress' name='ippy_wpgs_options[bbpress]' type='checkbox' value='1' <?php if ( ( $valuebb != '0') && !is_null($valuebb) ) { echo ' checked="checked"'; } ?> /> Activate Smilies for bbPress<br /> <?php } 
 	else { ?>
 	<input type='hidden' id='bbpress' name='ippy_wpgs_options[bbpress]' value='0'> <?php } 

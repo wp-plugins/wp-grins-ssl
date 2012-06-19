@@ -28,6 +28,10 @@ Tested on Single Site and MultiSite.
 
 == Changelog ==
 
+= 4.3 = 
+* 2012 June 18, by Ipstenu
+* bbPress 2.1's Fancy Editor borks this.
+
 = 4.2.1 =
 * 2012 June 02, by Ipstenu
 * Typos. A-freaking-gain
@@ -89,3 +93,6 @@ Because the previous fork-source was 1.0, and this is really just an extension o
 
 = Will you support BuddyPress? =
 Eventually. I'm not running it right now, so it's hard to test.
+
+= Why isn't this working on bbPress? =
+Do you have the fancy editor? Yeah it doesn't work. Sorry, I don't know why. This is a 'fast' fix. If you have the bbPress Fancy Editor on, this plugin goes away for bbPress.
