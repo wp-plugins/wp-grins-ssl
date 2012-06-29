@@ -23,7 +23,7 @@
 Plugin Name: WP Grins SSL
 Plugin URI: http://halfelf.org/plugins/wp-grins-ssl
 Description: A Clickable Smilies hack for WordPress.
-Version: 4.3
+Version: 4.4
 Author: Alex King, Ronald Huereca, Mika Epstein
 Author URI: http://www.ipstenu.org
 Props:  Original author, Alex King.  Original fork, Ronald Huereca
@@ -82,7 +82,7 @@ if (!class_exists('WPGrins')) {
                     $this->add_styles();
                 }
               }
-            if ( comments_open() && is_singular() && ( $valueco != '0') && !is_null($valueco) ) {
+            if ( ( $valueco != '0') && !is_null($valueco) ) {
                 $this->add_styles();
             }
         }		
@@ -97,7 +97,7 @@ if (!class_exists('WPGrins')) {
                     $this->add_scripts();
                 }
               }
-            if ( comments_open() && is_singular() && ( $valueco != '0') && !is_null($valueco) ) {
+            if ( ( $valueco != '0') && !is_null($valueco) ) {
                 $this->add_scripts();
             }
         }

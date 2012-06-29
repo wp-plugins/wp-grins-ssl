@@ -17,6 +17,10 @@ $j.wpgrins = {
 			myField = $j('#comment:input');
 			value = $j("#comment:input").attr("value");
 		}
+		else if ($j('#posttext:input').length > 0) {
+			myField = $j('#posttext:input');
+			value = $j("#posttext:input").attr("value");
+		}
 		else if ($j('#bbp_topic_content:input').length > 0) {
 			myField = $j('#bbp_topic_content:input');
 			value = $j("#bbp_topic_content:input").attr("value");
