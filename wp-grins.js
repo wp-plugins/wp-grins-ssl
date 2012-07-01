@@ -75,6 +75,9 @@ $j.wpgrins = {
 			} else if ($j('#comment').length > 0) {
 				var type = 'before';
 				var node = $j('#comment');
+			} else if ($j('#posttext').length > 0) {
+				var type = 'before';
+				var node = $j('#posttext');
 			} else if ($j('#bbp_topic_content').length > 0) {
 				var type = 'before';
 				var node = $j('#bbp_topic_content');
