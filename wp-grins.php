@@ -78,11 +78,11 @@ if (!class_exists('WPGrins')) {
     		$ippy_wpgs_bbp_fancy = get_option( '_bbp_use_wp_editor' );
     		
     		if ( function_exists('is_bbpress') ) {
-                if ( is_bbpress()  && ( $valuebb != '0') && !is_null($valuebb) && ($ippy_wpgs_bbp_fancy == '0') ) {
+                if ( is_bbpress()  && ( $valuebb != '0') && !is_null($valuebb) && ($ippy_wpgs_bbp_fancy == '0') && !is_admin() ) {
                     $this->add_styles();
                 }
               }
-            if ( ( $valueco != '0') && !is_null($valueco) ) {
+            if ( ( $valueco != '0') && !is_null($valueco) && !is_admin() ) {
                 $this->add_styles();
             }
         }		
@@ -93,11 +93,11 @@ if (!class_exists('WPGrins')) {
     		$ippy_wpgs_bbp_fancy = get_option( '_bbp_use_wp_editor' );
     		
     		if ( function_exists('is_bbpress') ) {
-                if ( is_bbpress()  && ( $valuebb != '0') && !is_null($valuebb) && ($ippy_wpgs_bbp_fancy == '0') ) {
+                if ( is_bbpress()  && ( $valuebb != '0') && !is_null($valuebb) && ($ippy_wpgs_bbp_fancy == '0') && !is_admin() ) {
                     $this->add_scripts();
                 }
               }
-            if ( ( $valueco != '0') && !is_null($valueco) ) {
+            if ( ( $valueco != '0') && !is_null($valueco)  && !is_admin()) {
                 $this->add_scripts();
             }
         }
