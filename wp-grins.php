@@ -1,6 +1,6 @@
 <?php
 
-// WP Grins SSL
+// SSL Grins
 //
 // Original plugin WP Grins
 // Copyright (c) 2004-2007 Alex King
@@ -20,7 +20,7 @@
 // *****************************************************************
 
 /*
-Plugin Name: WP Grins SSL
+Plugin Name: SSL Grins
 Plugin URI: http://halfelf.org/plugins/wp-grins-ssl
 Description: A Clickable Smilies hack for WordPress.
 Version: 4.3
