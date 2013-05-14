@@ -3,7 +3,7 @@
 Plugin Name: SSL Grins
 Plugin URI: http://halfelf.org/plugins/wp-grins-ssl
 Description: A Clickable Smilies hack for WordPress.
-Version: 5.0
+Version: 5.1
 Author: Alex King, Ronald Huereca, Mika Epstein
 Author URI: http://www.ipstenu.org
 
@@ -51,6 +51,9 @@ if (!class_exists('WPGrinsHELF')) {
     	        'buddypress'    => '0',
     	    );
     	    $this->wpgs_bbp_fancy = get_option('_bbp_use_wp_editor');
+    	    
+    	   // $this->wpgs_font_emoticons = is_plugin_active('font-emoticons/font-emoticons.php');
+    	    
         }
     
         public function init() {
@@ -139,7 +142,7 @@ if (!class_exists('WPGrinsHELF')) {
     		
     		add_settings_field(
     			'ippy_wpgs_bbpress',         // id
-    			__('WP Grins', 'ippy-wpgs'),                // setting title
+    			__('SSL Grins', 'ippy-wpgs'),                // setting title
     			array( $this, 'setting_input' ),   // display callback
     			'discussion',               // settings page
     			'default'                   // settings section
@@ -162,7 +165,7 @@ if (!class_exists('WPGrinsHELF')) {
     		$valid = array();
 
     	    foreach ($options as $key=>$value) {
-        	    if (!isset($input[$key])) $input[$key]=0;
+        	    if (!isset($input[$key])) $input[$key]=$this->wpgs_defaults[$key];
             }
     	    
     	    foreach ($options as $key=>$value) {
@@ -190,7 +193,7 @@ if (!class_exists('WPGrinsHELF')) {
     	// add settings to manage plugin page
     	function add_settings_link( $links, $file ) {
     		if ( plugin_basename( __FILE__ ) == $file ) {
-    			$settings_link = '<a href="' . admin_url( 'options-discussion.php' ) . '#bcq">' . __( 'Settings', 'ippy-wpgs' ) . '</a>';
+    			$settings_link = '<a href="' . admin_url( 'options-discussion.php' ) . '#wpgs">' . __( 'Settings', 'ippy-wpgs' ) . '</a>';
     			array_unshift( $links, $settings_link );
     		}
     		return $links;
