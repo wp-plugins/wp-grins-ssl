@@ -4,7 +4,7 @@ Contributors: alexkingorg, ronalfy, Ipstenu
 Requires at least: 3.0
 Tested up to: 3.4
 Stable tag: 4.2
-Donate link: https://www.wepay.com/donations/halfelf-wp
+Donate link: https://store.halfelf.org/donate/
 License: GPL2
 
 WP Grins SSL provides smilies for your comment areas and is compatible with SSL Administration.
@@ -18,7 +18,7 @@ As of version 4.0, WP Grins SSL also works on bbPress (the plugin) and has an op
 Tested on Single Site and MultiSite.
 
 * [Plugin Site](http://halfelf.org/plugins/wp-grins-ssl/)
-* [Donate](https://www.wepay.com/donations/halfelf-wp)
+* [Donate](https://store.halfelf.org/donate/)
 
 == Installation ==
 
