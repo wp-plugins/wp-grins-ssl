@@ -3,7 +3,7 @@
 Plugin Name: SSL Grins
 Plugin URI: http://halfelf.org/plugins/wp-grins-ssl
 Description: A Clickable Smilies hack for WordPress.
-Version: 5.2.2
+Version: 5.2.3
 Author: Alex King, Ronald Huereca, Mika Epstein
 Author URI: http://www.ipstenu.org
 Text Domain: wp-grins-ssl
@@ -95,7 +95,7 @@ if (!class_exists('WPGrinsHELF')) {
   					$smiled[] = $grin;
    					$tag = esc_html(str_replace(' ', '', $tag));
    					$srcurl = apply_filters('smilies_src', includes_url("images/smilies/$grin"), $grin, site_url());
-			        if ( is_plugin_active('new-smileys/new-smileys.php') ) {
+			        if ( is_plugin_active('new-smileys/new-smileys.php') || is_plugin_active('new-smileys-master/new-smileys.php') ) {
     					$grins .= "<span class='wp-smiley emoji emoji-$grin $display' alt='$tag' title='$grin' onclick='jQuery.wpgrins.grin(\"$tag\");'>$tag</span>";
                     } else {
     					$grins .= "<img src='$srcurl' alt='$tag' title='$grin' onclick='jQuery.wpgrins.grin(\"$tag\");' />";
