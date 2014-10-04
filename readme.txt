@@ -3,7 +3,7 @@ Tags: clickable, smilies, comments, bbpress, wpgrins
 Contributors: alexkingorg, ronalfy, Ipstenu
 Requires at least: 3.7
 Tested up to: 4.0
-Stable tag: 5.2.2
+Stable tag: 5.2.3
 Donate link: https://store.halfelf.org/donate/
 License: GPL2
 
@@ -12,6 +12,8 @@ SSL Grins provides smilies for your comment areas and is compatible with SSL Adm
 == Description ==
 
 SSL Grins will provide clickable smilies for both the post form in the admin interface and the comments form of your blog. SSL Grins is a fork of WP Grins that allows for use on a site using [Administration over SSL](http://codex.wordpress.org/Administration_Over_SSL) or not, auto-detecting which is why and displaying either way.
+
+As of version 4.0, SSL Grins also works on bbPress (the plugin) and has an option to turn it on or off as desired.
 
 Tested on Single Site and MultiSite.
 
@@ -25,6 +27,10 @@ Tested on Single Site and MultiSite.
 3. Look for 'Smilies' and check boxes as desired. (Comments are activated by default)
 
 == Changelog ==
+
+= 5.2.3 =
+* 2014 Oct 4, by Ipstenu
+* Adjusting check for [New Smilies](https://github.com/avryl/new-smileys)' new smilies to cover for people who leave the folder named 'new-smilies-master' - THANKS GITHUB!
 
 =5.2.2 =
 * 2014 May 15, by Ipstenu
@@ -123,19 +129,18 @@ Tested on Single Site and MultiSite.
 == Frequently Asked Questions ==
 
 = Why don't the smilies show up in my comments form? =
-Your theme must include the `wp_head` call and the comments field in your theme must have an id of `comment`.  This version of the plugin does not support manual insertion, because, frankly, no decent WordPress theme is lacking `wp_head` anymore. If yours is, get a new theme. I'm not supporting bad code (not even if it's mine).
+Your theme must include the `wp_head` call and the comments field in your theme must have an id of `comment`.  This version of the plugin does not support manual insertion, because, frankly, no decent WordPress theme is lacking `wp_head` anymore. If yours is, get a new theme. I'm not supporting bad code (unless it's mine).
+
+= I have wp_head and they still don't show up =
+
+If you're using Google Pagespeed, be careful how much you concatonate JS and CSS. It's complicated.
 
 = Why did this start with version 2? =
 Because the previous fork-source was 1.0, and this is really just an extension of all that work.  Wanted to keep Ronafly's credits up in there!
 
 = Will you support BuddyPress? =
-Not any time soon.
+Not at this time as I'm not using it enough to make it sustainable.
 
 = This isn't showing up on bbPress! =
+
 If you're using the bbPress Fancy Editor, it won't work. I have not yet debugged this.
-
-= I'm using the new smilies and some are missing! =
-
-Yes, they are. The following are 'hidden': "bear", "wordpress", "martini", "developer", "whiterussian", "burrito", "facepalm", "kitten", "uneasy"
-
-And those aren't the codes. Try <code>(w)</code> or <code>=^-^=</code> and see what happens.
